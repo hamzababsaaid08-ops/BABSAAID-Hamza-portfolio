@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projets de dimensionnement mécanique | Hamza Babsaaid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Styles propres à cette page de détail (n'affectent pas index.html) */
+  .detail-page{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 32px 100px;
+  }
+
+  .detail-back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--text-dim);
+    margin-bottom:40px;
+    transition:color .2s ease;
+  }
+  .detail-back:hover{ color:var(--accent); }
+
+  .detail-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .detail-org{
+    font-size:14.5px;
+    color:var(--blueprint);
+    font-weight:500;
+    margin-bottom:20px;
+  }
+  .detail-title{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:clamp(30px, 5vw, 46px);
+    text-transform:uppercase;
+    line-height:1.08;
+    margin-bottom:40px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .detail-gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-bottom:24px;
+  }
+  .detail-gallery figure{ margin:0; }
+  .detail-gallery img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    display:block;
+    border:1px solid var(--line);
+    background:var(--panel);
+    cursor:zoom-in;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .detail-gallery img:hover{
+    border-color:var(--blueprint);
+    transform:translateY(-3px);
+  }
+  .detail-gallery figcaption{
+    margin-top:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    color:var(--text-faint);
+    text-align:center;
+    letter-spacing:0.03em;
+  }
+
+  .detail-body{
+    font-size:16px;
+    color:var(--text-dim);
+    line-height:1.75;
+    max-width:720px;
+  }
+  .detail-body p{ margin-bottom:18px; }
+  .detail-body strong{ color:var(--text); font-weight:600; }
+
+  .detail-tools{
+    margin-top:36px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* Séparateur entre les 4 grands projets */
+  .project-block{
+    margin-bottom:64px;
+    padding-bottom:56px;
+    border-bottom:2px solid var(--line);
+  }
+  .project-block:last-of-type{
+    border-bottom:none;
+    padding-bottom:0;
+    margin-bottom:0;
+  }
+  .project-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-faint);
+    letter-spacing:0.1em;
+    margin-bottom:8px;
+  }
+  .project-title{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:clamp(24px, 4vw, 32px);
+    text-transform:uppercase;
+    color:var(--text);
+    margin-bottom:28px;
+  }
+
+  @media (max-width: 700px){
+    .detail-gallery{ grid-template-columns:1fr; }
+    .detail-gallery-2{ grid-template-columns:1fr; }
+    .detail-page{ padding:48px 20px 72px; }
+  }
+
+  /* Lightbox (zoom plein écran) */
+  .img-lightbox{
+    position:fixed; inset:0; z-index:3000;
+    display:none; align-items:center; justify-content:center;
+    padding:40px; background:rgba(26,31,54,0.9); backdrop-filter:blur(6px);
+  }
+  .img-lightbox.open{ display:flex; }
+  .img-lightbox img{ max-width:100%; max-height:100%; box-shadow:0 24px 60px -20px rgba(0,0,0,0.6); }
+  .img-lightbox-close{
+    position:absolute; top:24px; right:24px;
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid rgba(255,255,255,0.3);
+    background:none; color:#fff; font-size:18px; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="nav-id">
+      <div class="logo-mark">HB</div>
+      <span class="brand-text">Hamza Babsaaid</span>
+    </div>
+    <a class="nav-cta" href="index.html">← Retour au portfolio</a>
+  </div>
+</header>
+
+<main class="detail-page">
+  <a class="detail-back" href="index.html#experiences">← Retour aux expériences</a>
+
+  <div class="detail-label">Projets </div>
+  <div class="detail-org">Bureau d'études — Dimensionnement mécanique</div>
+  <h1 class="detail-title">Études de dimensionnement mécanique</h1>
+
+  <!-- ============================================================
+       PROJET 1 — Condenseur / Réservoir sous pression
+  ============================================================ -->
+  <div class="project-block">
+    <div class="project-label">Projet-01</div>
+    <h2 class="project-title">Conception et validation d'un condenseur-réservoir sous pression selon
+le CODAP et simulation par éléments finis avec Abaqus</h2>
+
+    <div class="detail-body">
+      <p>Vérification des épaisseurs minimales de la virole, du fond et des zones critiques selon le <strong>CODAP</strong>, avec simulation du comportement mécanique du réservoir sous pression interne.</p>
+    </div>
+
+    <section class="detail-section">
+      <h3>Données de calcul</h3>
+      <p class="detail-text">
+          Le tableau ci-dessous présente les pressions, températures et épaisseurs de corrosion retenues pour les deux situations réglementaires : service et épreuve.
+      </p>
+
+      <div class="detail-table-wrap">
+        <table class="detail-table">
+          <thead>
+            <tr>
+              <th>Paramètre</th>
+              <th>Situation de service</th>
+              <th>Situation d'épreuve</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Code de calcul</strong></td>
+              <td colspan="2">CODAP 2010</td>
+            </tr>
+            <tr>
+              <td><strong>Capacité</strong></td>
+              <td colspan="2">2300 L</td>
+            </tr>
+            <tr>
+              <td><strong>Fluide</strong></td>
+              <td colspan="2">Vapeur d'eau</td>
+            </tr>
+            <tr>
+              <td><strong>Matériau</strong></td>
+              <td>P265GH</td>
+              <td>P265GH</td>
+            </tr>
+            <tr>
+              <td><strong>Pression P (bar)</strong></td>
+              <td>2.5 Bar</td>
+              <td>3.75 Bar</td>
+            </tr>
+            <tr>
+              <td><strong>Température T (°C)</strong></td>
+              <td>130 °C</td>
+              <td>100 °C</td>
+            </tr>
+            <tr>
+              <td><strong>Épaisseur de corrosion (mm)</strong></td>
+              <td>2 mm</td>
+              <td>2 mm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h3>Modélisation 3D sous CATIA V5</h3>
+      <div class="detail-gallery detail-gallery-1 detail-gallery-contain">
+        <figure>
+          <img src="condenseurcatia.png" alt="Modélisation 3D du condenseur sous CATIA V5" data-lightbox>
+          <figcaption>Modèle CATIA V5</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h3>Simulation numérique par MEF sous Abaqus</h3>
+      <div class="detail-gallery detail-gallery-contain">
+        <figure>
+          <img src="maillage1.png" alt="Maillage quadratique du condenseur" data-lightbox>
+          <figcaption>Maillage quadratique de taille 15 mm</figcaption>
+        </figure>
+        <figure>
+          <img src="contraine10.png" alt="Contraintes — situation de service" data-lightbox>
+          <figcaption>Contraintes VAN MISES</figcaption>
+        </figure>
+        <figure>
+          <img src="contraine11.png" alt="Contraintes — situation d'épreuve" data-lightbox>
+          <figcaption>Contraintes — VAN MISES</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="detail-tools">
+      <span class="tool-tag">CODAP 2010</span>
+      <span class="tool-tag">Abaqus</span>
+      <span class="tool-tag">CATIA V5</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PROJET 2 — Support de transformateur électrique
+  ============================================================ -->
+  <div class="project-block">
+    <div class="project-label">Projet-02</div>
+    <h2 class="project-title">Étude d'un support de transformateur électrique</h2>
+
+    <div class="detail-body">
+      <p>Calcul des charges de vent selon les règles françaises <strong>NV65</strong>, suivi d'une simulation statique et modale du support afin de valider son dimensionnement.le matériau utilisé est :S275.</p>
+    </div>
+
+    <section class="detail-section">
+      <h3>Modélisation 3D</h3>
+      <div class="detail-gallery detail-gallery-1 detail-gallery-contain">
+        <figure>
+          <img src="transform.png" alt="Modélisation 3D du support de transformateur" data-lightbox>
+          <figcaption>Modèle 3D</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h3>Simulation numérique</h3>
+      <div class="detail-gallery detail-gallery-1 detail-gallery-contain">
+        <figure>
+          <img src="transfor10.png" alt="Simulation numérique du support de transformateur" data-lightbox>
+          <figcaption>Résultats de simulation</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="detail-tools">
+      <span class="tool-tag">NV65</span>
+      <span class="tool-tag">Abaqus</span>
+      <span class="tool-tag">Robot Structural Analysis</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PROJET 3 — Châssis de bogie Y32 (train)
+  ============================================================ -->
+  <div class="project-block">
+    <div class="project-label">Projet-03</div>
+    <h2 class="project-title">Modélisation et Analyse vibratoire du châssis de bogie Y32 de train par
+la méthode des éléments finis</h2>
+
+    <div class="detail-body">
+      <p>Le bogie Y32 est un organe essentiel du matériel ferroviaire, assurant la liaison entre la caisse du véhicule et la voie ferrée. Son châssis supporte les charges statiques et dynamiques transmises lors du roulement, et doit garantir la tenue mécanique et le confort de circulation dans toutes les conditions d'exploitation.</p>
+    </div>
+
+    <div class="detail-gallery detail-gallery-1 detail-gallery-contain">
+      <figure>
+        <img src="bogiemodele.png" alt="Schéma de définition du bogie Y32" data-lightbox>
+        <figcaption>Bogie Y32 — vue d'ensemble</figcaption>
+      </figure>
+    </div>
+
+    <section class="detail-section">
+      <h3>Modélisation 3D</h3>
+      <div class="detail-gallery detail-gallery-1 detail-gallery-contain">
+        <figure>
+          <img src="bogiecatia.png" alt="Modélisation 3D du châssis de bogie sous CATIA V5" data-lightbox>
+          <figcaption>Modèle CATIA V5</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h3>Analyse modale</h3>
+      <div class="detail-gallery detail-gallery-1 detail-gallery-contain">
+        <figure>
+          <img src="analysemodale.png" alt="Analyse modale et dynamique du châssis de bogie" data-lightbox>
+          <figcaption>Modes propres — résultats</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="detail-tools">
+      <span class="tool-tag">CATIA V5</span>
+      <span class="tool-tag">Abaqus</span>
+      <span class="tool-tag">Analyse modale</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PROJET 4 — Jumeau numérique
+  ============================================================ -->
+  <div class="project-block">
+    <div class="project-label">Projet-04</div>
+    <h2 class="project-title">Conception d'une plateforme digitale Twin
+(jumeau numérique)d'une éprouvette métallique
+normalisée pour un essai de traction</h2>
+
+    <div class="detail-body">
+      <p>Un <strong>jumeau numérique</strong> est une représentation virtuelle d'un système physique, mise à jour en continu à partir de données réelles, permettant de simuler, prédire et analyser son comportement sans intervenir directement sur le système réel.</p>
+    </div>
+
+    <section class="detail-section">
+      <h3>Comparaison entre étude expérimentale et numérique par Abaqus</h3>
+      <p class="detail-text">
+          Le fichier Excel ci-dessous présente la comparaison détaillée entre les résultats de l'étude expérimentale et ceux obtenus par simulation numérique sous Abaqus.
+      </p>
+
+      <div class="detail-download">
+        <a class="btn btn-download" href="CALCUL_NUMERIQUE.xlsx" download>
+          📥 Télécharger le fichier Excel — Comparaison expérimentale / numérique
+        </a>
+      </div>
+    </section>
+
+    <div class="detail-tools">
+      <span class="tool-tag">Abaqus</span>
+      <span class="tool-tag">Jumeau numérique</span>
+    </div>
+  </div>
+
+</main>
+
+<!-- Lightbox -->
+<div id="imgLightbox" class="img-lightbox">
+  <button class="img-lightbox-close" aria-label="Fermer">✕</button>
+  <img src="" alt="">
+</div>
+
+<script>
+  const lightbox = document.getElementById('imgLightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-lightbox]');
+    if (trigger) {
+      lightboxImg.src = trigger.src;
+      lightboxImg.alt = trigger.alt;
+      lightbox.classList.add('open');
+    }
+    if (e.target === lightbox || e.target.closest('.img-lightbox-close')) {
+      lightbox.classList.remove('open');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>

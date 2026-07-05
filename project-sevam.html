@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimisation du mécanisme de scoop | Hamza Babsaaid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Styles propres à cette page de détail (n'affectent pas index.html) */
+  .detail-page{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 32px 100px;
+  }
+
+  .detail-back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--text-dim);
+    margin-bottom:40px;
+    transition:color .2s ease;
+  }
+  .detail-back:hover{ color:var(--accent); }
+
+  .detail-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .detail-org{
+    font-size:14.5px;
+    color:var(--blueprint);
+    font-weight:500;
+    margin-bottom:20px;
+  }
+  .detail-title{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:clamp(30px, 5vw, 46px);
+    text-transform:uppercase;
+    line-height:1.08;
+    margin-bottom:40px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .detail-body{
+    font-size:16px;
+    color:var(--text-dim);
+    line-height:1.75;
+    max-width:720px;
+  }
+  .detail-body p{ margin-bottom:18px; }
+  .detail-body strong{ color:var(--text); font-weight:600; }
+
+  .detail-tools{
+    margin-top:36px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="nav-id">
+      <div class="logo-mark">HB</div>
+      <span class="brand-text">Hamza Babsaaid</span>
+    </div>
+    <a class="nav-cta" href="index.html">← Retour au portfolio</a>
+  </div>
+</header>
+
+<main class="detail-page">
+  <a class="detail-back" href="index.html#experiences">← Retour aux expériences</a>
+
+  <div class="detail-label">Projet PFA</div>
+  <div class="detail-org">Conception mécanique — CATIA V5 | Maintenance préventive et prédictive</div>
+  <h1 class="detail-title">Conception et optimisation d'un mécanisme de scoop (distributeur de
+gouttes de verre)</h1>
+
+  <div class="detail-body">
+    <p>Ce projet vise à <strong>améliorer la fiabilité du système</strong> par l'intégration de la méthode <strong>AMDEC</strong> (Analyse des Modes de Défaillance, de leurs Effets et de leur Criticité). Cette démarche a permis d'identifier les modes de défaillance potentiels du mécanisme de scoop, d'évaluer leur criticité (fréquence, gravité, détectabilité) et de mettre en place des actions correctives et préventives ciblées afin de réduire les risques de dysfonctionnement.</p>
+    <p>Le fichier Excel ci-dessous détaille la méthodologie complète appliquée, incluant la hiérarchisation des défaillances selon la <strong>méthode de Pareto</strong> et la classification <strong>ABC</strong> des composants critiques.</p>
+  </div>
+
+  <div class="detail-download">
+    <a class="btn btn-download" href="scoop2.xlsx" download>
+      📥 Télécharger le fichier Excel — Analyse AMDEC / Pareto / ABC
+    </a>
+  </div>
+
+  <section class="detail-section">
+    <h2>Vidéo de désassemblage de ce mécanisme de scoop.</h2>
+
+    <p class="detail-text">
+        La vidéo ci-dessous illustre le démontage du mécanisme de scoop. Cette animation a été réalisée dans l'atelier DMU Fitting de CATIA V5.
+    </p>
+
+    <div class="detail-video">
+        <!--
+          OPTION 1 — Vidéo locale (fichier mp4 dans le dossier assets/)
+          Remplace "assets/scoop.mp4" par le nom exact de ton fichier vidéo.
+        -->
+        <video controls preload="metadata" poster="assets/scoop-poster.png">
+            <source src="scoop.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture vidéo.
+        </video>
+
+        <!--
+          OPTION 2 — Vidéo YouTube (si hébergée en ligne)
+          Supprime le bloc <video> ci-dessus et décommente ceci,
+          en remplaçant ID_DE_LA_VIDEO par l'identifiant YouTube :
+
+          <iframe
+              src="https://www.youtube.com/embed/ID_DE_LA_VIDEO"
+              title="Démonstration du mécanisme de scoop"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+          </iframe>
+        -->
+    </div>
+  </section>
+
+  <div class="detail-tools">
+    <span class="tool-tag">CATIA V5</span>
+    <span class="tool-tag">AMDEC</span>
+    <span class="tool-tag">Pareto</span>
+    <span class="tool-tag">ABC</span>
+  </div>
+</main>
+
+<!-- Lightbox (conservé au cas où d'autres pages en ont besoin) -->
+<div id="imgLightbox" class="img-lightbox">
+  <button class="img-lightbox-close" aria-label="Fermer">✕</button>
+  <img src="" alt="">
+</div>
+
+<script>
+  const lightbox = document.getElementById('imgLightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-lightbox]');
+    if (trigger) {
+      lightboxImg.src = trigger.src;
+      lightboxImg.alt = trigger.alt;
+      lightbox.classList.add('open');
+    }
+    if (e.target === lightbox || e.target.closest('.img-lightbox-close')) {
+      lightbox.classList.remove('open');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>

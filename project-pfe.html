@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage PFE — Sphère de stockage de butane | Hamza Babsaaid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Styles propres à cette page de détail (n'affectent pas index.html) */
+  .detail-page{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 32px 100px;
+  }
+
+  .detail-back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--text-dim);
+    margin-bottom:40px;
+    transition:color .2s ease;
+  }
+  .detail-back:hover{ color:var(--accent); }
+
+  .detail-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .detail-org{
+    font-size:14.5px;
+    color:var(--blueprint);
+    font-weight:500;
+    margin-bottom:20px;
+  }
+  .detail-title{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:clamp(30px, 5vw, 46px);
+    text-transform:uppercase;
+    line-height:1.08;
+    margin-bottom:40px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .detail-gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-bottom:44px;
+  }
+  .detail-gallery figure{ margin:0; }
+  .detail-gallery img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    display:block;
+    border:1px solid var(--line);
+    background:var(--panel);
+    cursor:zoom-in;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .detail-gallery img:hover{
+    border-color:var(--blueprint);
+    transform:translateY(-3px);
+  }
+  .detail-gallery figcaption{
+    margin-top:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    color:var(--text-faint);
+    text-align:center;
+    letter-spacing:0.03em;
+  }
+
+  .detail-body{
+    font-size:16px;
+    color:var(--text-dim);
+    line-height:1.75;
+    max-width:720px;
+  }
+  .detail-body p{ margin-bottom:18px; }
+  .detail-body strong{ color:var(--text); font-weight:600; }
+
+  .detail-tools{
+    margin-top:36px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* AJOUT — styles manquants pour les sections type "Maillage" (.detail-section) */
+  /* IMPORTANT : style.css met "section{opacity:0; transform:translateY(60px)}" par défaut
+     et ne l'annule que via la classe .show ajoutée par script.js (absent sur cette page).
+     On force donc l'affichage ici pour .detail-section. */
+  .detail-section{
+    margin-bottom:44px;
+    opacity:1 !important;
+    transform:none !important;
+    border-top:none;
+    padding:0;
+  }
+  .detail-section h2{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:clamp(22px, 3.5vw, 30px);
+    text-transform:uppercase;
+    color:var(--text);
+    margin-bottom:16px;
+  }
+  .detail-text{
+    font-size:16px;
+    color:var(--text-dim);
+    line-height:1.75;
+    max-width:720px;
+  }
+  .detail-section .detail-gallery{
+    margin-bottom:0;
+  }
+
+  @media (max-width: 700px){
+    .detail-gallery{ grid-template-columns:1fr; }
+    .detail-page{ padding:48px 20px 72px; }
+  }
+
+  /* Lightbox (zoom plein écran) */
+  .img-lightbox{
+    position:fixed; inset:0; z-index:3000;
+    display:none; align-items:center; justify-content:center;
+    padding:40px; background:rgba(26,31,54,0.9); backdrop-filter:blur(6px);
+  }
+  .img-lightbox.open{ display:flex; }
+  .img-lightbox img{ max-width:100%; max-height:100%; box-shadow:0 24px 60px -20px rgba(0,0,0,0.6); }
+  .img-lightbox-close{
+    position:absolute; top:24px; right:24px;
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid rgba(255,255,255,0.3);
+    background:none; color:#fff; font-size:18px; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="nav-id">
+      <div class="logo-mark">HB</div>
+      <span class="brand-text">Hamza Babsaaid</span>
+    </div>
+    <a class="nav-cta" href="index.html">← Retour au portfolio</a>
+  </div>
+</header>
+
+<main class="detail-page">
+  <a class="detail-back" href="index.html#experiences">← Retour aux expériences</a>
+
+  <div class="detail-label">Stage PFE</div>
+  <div class="detail-org">MECF Engineering — 2026</div>
+  <h1 class="detail-title">Calcul et dimensionnement d'une sphère de stockage de butane conforme aux codes ASME VIII et CODAP</h1>
+
+  <div class="detail-gallery">
+    <figure>
+      <img src="sphere1.png" alt="Modèle du réservoir sphérique — vue 1" data-lightbox>
+      <figcaption>Modèle sans le demi-réservoir cylindrique</figcaption>
+    </figure>
+    <figure>
+      <img src="sphere2.png" alt="Modèle du réservoir sphérique — vue 2" data-lightbox>
+      <figcaption> Modèle complet sans contreventement</figcaption>
+    </figure>
+    <figure>
+      <img src="sphere3.png" alt="Modèle du réservoir sphérique — vue 3" data-lightbox>
+      <figcaption>Modèle complet avec contreventement</figcaption>
+    </figure>
+  </div>
+
+  <div class="detail-body">
+    <p>Projet complet de dimensionnement d'un réservoir sphérique sous pression, mené de la conception jusqu'à la validation numérique selon <strong>ASME VIII</strong> et <strong>CODAP</strong>. Après la réalisation du modèle surfacique et l'attribution des épaisseurs aux différentes surfaces, une mise en plan a été effectuée afin d'obtenir une vue détaillée du projet : les différentes zones de la sphère, les supports, les piquages ainsi que les zones nécessitant des renforcements.</p>
+    <p>L'analyse des piquages et le dimensionnement des renforts ont été menés conformément aux exigences normatives, avec un calcul des charges sismiques selon le <strong>RPS 2011</strong> et des charges de vent selon les règles <strong>NV65</strong>. Le dimensionnement des supports a suivi la norme <strong>CM66</strong>, avec descente de charges pour les fondations.</p>
+    <p>La simulation numérique a été réalisée sous <strong>Abaqus</strong> afin d'évaluer les contraintes, les déplacements et les zones critiques de la structure sous pression interne, poids propre et efforts extérieurs. L'ensemble des calculs a été consolidé dans <strong>une note de calcul complète sous Excel et Mathcad.</strong></p>
+  </div>
+  <div class="detail-gallery detail-gallery-2">
+    <figure>
+      <img src="A.jpeg" alt="Modèle géométrique du réservoir — plan de définition" data-lightbox>
+      <figcaption> Les quatre zones de l'enveloppe sphérique</figcaption>
+    </figure>
+    <figure>
+      <img src="B.jpeg" alt="Modèle géométrique du réservoir — mise en plan finale" data-lightbox>
+      <figcaption> positions des piquages</figcaption>
+    </figure>
+  </div>
+
+  <section class="detail-section">
+    <h2>Maillage</h2>
+
+    <p class="detail-text">
+        Après la création du modèle géométrique, un maillage tétraédrique a été généré sous Abaqus afin de discrétiser la structure.
+        Un raffinement du maillage a été appliqué dans les zones critiques, notamment au niveau des supports, des piquages et des régions soumises à de fortes concentrations de contraintes.
+        Cette stratégie permet d'améliorer la précision des résultats tout en conservant un temps de calcul raisonnable.
+    </p>
+
+    <div class="detail-gallery">
+        <figure>
+            <img src="c.png" alt="Modèle du réservoir sphérique — vue 1" data-lightbox>
+            <figcaption>Maillage tétraédrique de taille 200 mm.</figcaption>
+        </figure>
+        <figure>
+            <img src="d.png" alt="Modèle du réservoir sphérique — vue 2" data-lightbox>
+            <figcaption>Maillage tétraédrique de taille 200 mm.</figcaption>
+        </figure>
+        <figure>
+            <img src="e.png" alt="Modèle du réservoir sphérique — vue 3" data-lightbox>
+            <figcaption>Maillage tétraédrique de taille 200 mm.</figcaption>
+        </figure>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <h2>Simulation par Abaqus</h2>
+
+    <h3>Situation de service</h3>
+    <div class="detail-gallery detail-gallery-2">
+        <figure>
+            <img src="h.png" alt="Simulation Abaqus — situation de service, vue 1" data-lightbox>
+            <figcaption>Contrainte de Von Mises</figcaption>
+        </figure>
+        <figure>
+            <img src="f.png" alt="Simulation Abaqus — situation de service, vue 2" data-lightbox>
+            <figcaption>Déplacement</figcaption>
+        </figure>
+    </div>
+
+    <h3>Situation d'épreuve</h3>
+    <div class="detail-gallery detail-gallery-2">
+        <figure>
+            <img src="g.png" alt="Simulation Abaqus — situation d'épreuve, vue 1" data-lightbox>
+            <figcaption>Contrainte de Von Mises</figcaption>
+        </figure>
+        <figure>
+            <img src="i.png" alt="Simulation Abaqus — situation d'épreuve, vue 2" data-lightbox>
+            <figcaption>Concentration des contraintes localisée au niveau du point d'attache.</figcaption>
+        </figure>
+    </div>
+
+    <h3>Solution pour éviter le pic de contrainte : ajout d'une plaque de renfort</h3>
+    <div class="detail-gallery">
+        <figure>
+            <img src="plaque de renfort.jpeg" alt="Plaque de renfort — vue 1" data-lightbox>
+            <figcaption>plaque de renfort</figcaption>
+        </figure>
+        <figure>
+            <img src="concentration1.png" alt="Plaque de renfort — vue 2" data-lightbox>
+            <figcaption>La contrainte a diminué de 50 MPa.</figcaption>
+        </figure>
+        <figure>
+            <img src="concentration2.png" alt="Plaque de renfort — vue 3" data-lightbox>
+            <figcaption>Contrainte de Von Mises</figcaption>
+        </figure>
+    </div>
+
+    <h3>Vérification avec demi-cylindre</h3>
+    <p class="detail-subtext">Situation de service</p>
+    <div class="detail-gallery detail-gallery-2">
+        <figure>
+            <img src="contrainte3.png" alt="Demi-cylindre — service, vue 1" data-lightbox>
+            <figcaption>Contrainte de Von Mises</figcaption>
+        </figure>
+        <figure>
+            <img src="deplacement3.png" alt="Demi-cylindre — service, vue 2" data-lightbox>
+            <figcaption>Deplacement</figcaption>
+        </figure>
+    </div>
+    <p class="detail-subtext">Situation d'épreuve</p>
+    <div class="detail-gallery detail-gallery-2">
+        <figure>
+            <img src="contrainte4.png" alt="Demi-cylindre — épreuve, vue 1" data-lightbox>
+            <figcaption>Contrainte de Von Mises</figcaption>
+        </figure>
+        <figure>
+            <img src="deplacement4.png" alt="Demi-cylindre — épreuve, vue 2" data-lightbox>
+            <figcaption>deplacement</figcaption>
+        </figure>
+    </div>
+
+    <h3>Vérification sous les actions sismiques et du vent</h3>
+    <div class="detail-gallery detail-gallery-2">
+        <figure>
+            <img src="contrainte5 (1).png" alt="Vérification sismique et vent — vue 1" data-lightbox>
+            <figcaption>Contrainte de Von Mises</figcaption>
+        </figure>
+        <figure>
+            <img src="contrainte6.png" alt="Vérification sismique et vent — vue 2" data-lightbox>
+            <figcaption>Contrainte de Von Mises</figcaption>
+        </figure>
+    </div>
+  </section>
+
+  <div class="detail-tools">
+    <span class="tool-tag">ASME VIII</span>
+    <span class="tool-tag">CODAP 2010</span>
+    <span class="tool-tag">RPS 2011</span>
+    <span class="tool-tag">NV65</span>
+    <span class="tool-tag">CM66</span>
+    <span class="tool-tag">Abaqus</span>
+    <span class="tool-tag">CATIA V5</span>
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div id="imgLightbox" class="img-lightbox">
+  <button class="img-lightbox-close" aria-label="Fermer">✕</button>
+  <img src="" alt="">
+</div>
+
+<script>
+  const lightbox = document.getElementById('imgLightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-lightbox]');
+    if (trigger) {
+      lightboxImg.src = trigger.src;
+      lightboxImg.alt = trigger.alt;
+      lightbox.classList.add('open');
+    }
+    if (e.target === lightbox || e.target.closest('.img-lightbox-close')) {
+      lightbox.classList.remove('open');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
